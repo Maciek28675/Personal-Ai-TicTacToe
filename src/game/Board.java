@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Arrays;
+
 public class Board {
 
     private byte size = 3;
@@ -21,12 +23,25 @@ public class Board {
 
     }
 
-    public boolean makeMove(int row, int col) {
-        return false;
+    public boolean makeMove(int row, int col, char player){
+
+        // Place figure only on empty squares
+        if(board[row][col] != '0')
+            return false;
+
+        board[row][col] = player;
+
+        return true;
     }
 
     public boolean isGameFinished() {
-        return false;
+
+        for(int row = 0; row < this.size; row++)
+            for(int col = 0; col < this.size; col++)
+                if(board[row][col] == '0')
+                    return false;
+
+        return true;
     }
 
     public char checkGameState() {
@@ -35,10 +50,27 @@ public class Board {
 
     public void resetBoard() {
 
+        for(int row = 0; row < this.size; row++)
+            for(int col = 0; col < this.size; col++)
+                board[row][col] = '0';
+    }
+
+    public void resetWinningCells() {
+
+        for(int row = 0; row < this.size; row++)
+            for(int col = 0; col < this.size; col++)
+                winningCells[row][col] = false;
     }
 
     public int emptyCells(){
-        return 0;
+        int count = 0;
+
+        for(int row = 0; row < this.size; row++)
+            for(int col = 0; col < this.size; col++)
+                if(board[row][col] == '0')
+                    count++;
+
+        return count;
     }
 
 
