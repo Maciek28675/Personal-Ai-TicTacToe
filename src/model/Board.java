@@ -1,6 +1,4 @@
-package game;
-
-import java.util.Arrays;
+package model;
 
 public class Board {
 
@@ -217,6 +215,4 @@ public class Board {
 
         return count;
     }
-
-
 }
