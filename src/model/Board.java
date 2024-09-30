@@ -4,7 +4,7 @@ public class Board {
 
     private byte size = 3;
     private byte numberToWin = 3;
-    private static final int CELLSIZE = 200;
+    public static final int CELLSIZE = 200;
 
     private char [][] board;
 
@@ -18,10 +18,6 @@ public class Board {
 
         int [][] board = new int[this.size][this.size];
         boolean [][] winningCells = new boolean[this.size][this.size];
-    }
-
-    public void draw() {
-
     }
 
     public boolean makeMove(int row, int col, char player){
