@@ -14,11 +14,13 @@ public class MenuPanel extends JPanel {
     private JButton newGameButton;
     private JSlider difficultySlider;
 
+    // Color constants
     private static final Color BACKGROUND_COLOR = new Color(23, 19, 33);
     private static final Color TEXT_COLOR = new Color(255, 255, 255);
     private static final Color BUTTON_BACKGROUND_COLOR = new Color(68, 147, 65);
     private static final Color BUTTON_BORDER_COLOR = new Color(47, 107, 45);
 
+    // Dimensions constants
     private static final int BUTTON_WIDTH = 200;
     private static final int BUTTON_HEIGHT = 50;
     private static final int SLIDER_WIDTH = 200;
@@ -34,6 +36,34 @@ public class MenuPanel extends JPanel {
         setUpLayout();
     }
 
+    // =========================================================
+    // Getters and Setters
+    // =========================================================
+
+    public JButton getNewGameButton() {
+        return newGameButton;
+    }
+
+    public JSlider getDifficultySlider() {
+        return difficultySlider;
+    }
+
+    public void setNewGameButtonColor(Color color) {
+        newGameButton.setBackground(color);
+    }
+
+    public void setNewGameButtonText(String text) {
+        newGameButton.setText(text);
+    }
+
+    public void setTurnInfoText(String text) {
+        turnInfo.setText(text);
+    }
+
+    // =========================================================
+    // Constructor related methods
+    // =========================================================
+
     private void initComponents(){
         // Labels
         welcomeMessage = new JLabel("Welcome to Ai Tic Tac Toe");
@@ -46,18 +76,17 @@ public class MenuPanel extends JPanel {
         difficultyMessage.setFont(new Font("Arial", Font.BOLD, 20));
         difficultyMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        turnInfo = new JLabel("Your turn!");
+        turnInfo = new JLabel(" ");
         turnInfo.setForeground(TEXT_COLOR);
         turnInfo.setFont(new Font("Arial", Font.BOLD, 20));
         turnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
         // Buttons
         newGameButton = new JButton("START");
         newGameButton.setBackground(BUTTON_BACKGROUND_COLOR);
         newGameButton.setForeground(TEXT_COLOR);
         newGameButton.setFont(new Font("Arial", Font.BOLD, 30));
-        newGameButton.setBorder(BorderFactory.createLineBorder(BUTTON_BORDER_COLOR, 3));
+        //newGameButton.setBorder(BorderFactory.createLineBorder(BUTTON_BORDER_COLOR, 3));
         newGameButton.setFocusable(false);
         newGameButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         newGameButton.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));

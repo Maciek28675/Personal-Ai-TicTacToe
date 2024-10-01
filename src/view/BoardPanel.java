@@ -33,6 +33,7 @@ public class BoardPanel extends JPanel {
                 board[row][col].setFocusable(false);
                 board[row][col].setPreferredSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
                 board[row][col].setMaximumSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
+                board[row][col].setMinimumSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
             }
         }
     }

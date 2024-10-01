@@ -1,5 +1,7 @@
 package view;
 
+import controller.MenuController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +11,7 @@ public class MainFrame extends JFrame {
 
     private MenuPanel menuPanel;
     private BoardPanel boardPanel;
+    private MenuController menuController;
 
     private static final Color BACKGROUND_COLOR = new Color(23, 19,33);
     private static final int WINDOW_WIDTH = 550;
@@ -30,8 +33,12 @@ public class MainFrame extends JFrame {
 
     // This method is used to configure all component properties like fonts, color, etc.
     private void initComponents() {
+        // Panels
         menuPanel = new MenuPanel();
         boardPanel = new BoardPanel();
+
+        // Controllers
+        menuController = new MenuController(menuPanel);
     }
 
     // This method is used to place every gui element in a windows
