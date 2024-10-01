@@ -48,8 +48,8 @@ public class MenuPanel extends JPanel {
         newGameButton.setFont(new Font("Arial", Font.BOLD, 30));
         newGameButton.setBorder(BorderFactory.createLineBorder(new Color(47, 107, 45), 3));
         newGameButton.setFocusable(false);
-        newGameButton.setPreferredSize(new Dimension(200, 60));
-        newGameButton.setMaximumSize(new Dimension(200, 60));
+        newGameButton.setPreferredSize(new Dimension(200, 50));
+        newGameButton.setMaximumSize(new Dimension(200, 50));
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Sliders

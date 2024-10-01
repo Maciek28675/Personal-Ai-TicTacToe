@@ -1,5 +1,4 @@
 package view;
-import model.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +8,13 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private MenuPanel menuPanel;
+    private BoardPanel boardPanel;
     //private JPanel gameBoard;
 
     public MainFrame() {
 
         this.setTitle("Tic Tac Toe 1.0");
-        this.setSize(500, 750);
+        this.setSize(550, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.getContentPane().setBackground(new Color(23,19,33));
@@ -29,12 +29,18 @@ public class MainFrame extends JFrame {
     private void initComponents() {
         // Panels
         menuPanel = new MenuPanel();
+        boardPanel = new BoardPanel();
     }
 
     // This method is used to place every gui element in a windows
     private void setUpLayout() {
 
-        this.setLayout(new BorderLayout());
-        this.add(menuPanel, BorderLayout.NORTH);
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+
+        menuPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        boardPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.add(menuPanel);
+        this.add(boardPanel);
     }
 }
