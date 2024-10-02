@@ -21,6 +21,18 @@ public class BoardPanel extends JPanel {
         setUpLayout();
     }
 
+    // ==========================
+    // Getters and Setters
+    // ==========================
+
+    public JButton getBoardButton(int row, int col){
+        return board[row][col];
+    }
+
+    // ==============================
+    // Constructor related methods
+    // ==============================
+
     private void initComponents() {
         board = new JButton[3][3];
 
@@ -34,6 +46,7 @@ public class BoardPanel extends JPanel {
                 board[row][col].setPreferredSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
                 board[row][col].setMaximumSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
                 board[row][col].setMinimumSize(new Dimension(SQUARE_SIZE, SQUARE_SIZE));
+                board[row][col].setEnabled(false);
             }
         }
     }

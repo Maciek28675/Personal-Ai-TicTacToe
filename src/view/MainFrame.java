@@ -1,6 +1,6 @@
 package view;
 
-import controller.MenuController;
+import controller.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +12,7 @@ public class MainFrame extends JFrame {
     private MenuPanel menuPanel;
     private BoardPanel boardPanel;
     private MenuController menuController;
+    private GameController gameController;
 
     private static final Color BACKGROUND_COLOR = new Color(23, 19,33);
     private static final int WINDOW_WIDTH = 550;
@@ -38,7 +39,8 @@ public class MainFrame extends JFrame {
         boardPanel = new BoardPanel();
 
         // Controllers
-        menuController = new MenuController(menuPanel);
+        gameController = new GameController(boardPanel);
+        menuController = new MenuController(menuPanel, gameController);
     }
 
     // This method is used to place every gui element in a windows
