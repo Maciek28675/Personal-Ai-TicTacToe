@@ -6,7 +6,7 @@ public class Board {
     private byte numberToWin = 3;
     public static final int CELLSIZE = 200;
 
-    private char [][] board;
+    char [][] board;
 
     // This array is used to track winning cells so that we know which cells
     // should be marked with different color in case of a win
@@ -210,5 +210,9 @@ public class Board {
                     count++;
 
         return count;
+    }
+
+    public int getSize(){
+        return this.size;
     }
 }

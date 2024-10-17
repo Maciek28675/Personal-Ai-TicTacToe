@@ -20,5 +20,9 @@ public class GameController {
             }
         }
     }
+
+    // #TODO: Add action listeners for board buttons - updated board state after clicking a button and change players
+    // #TODO: Change color of winning squares after win
+    // #TODO: After player's move, make Ai move
 }
 

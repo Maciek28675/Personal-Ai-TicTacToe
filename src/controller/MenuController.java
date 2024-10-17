@@ -26,6 +26,8 @@ public class MenuController {
     private void initListeners() {
 
         // #TODO: Consider using card layout for start button
+        // #TODO: Delegate creating action listeners to separate classes (or make them inner)
+        // #TODO: Make difficulty slider non changeable after clicking start
         
         menuPanel.getNewGameButton().addActionListener(new ActionListener() {
             @Override
