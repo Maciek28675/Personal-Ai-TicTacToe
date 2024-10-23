@@ -93,7 +93,7 @@ public class MenuPanel extends JPanel {
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Sliders
-        difficultySlider = new JSlider(JSlider.HORIZONTAL, 1, 5, 1);
+        difficultySlider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
         difficultySlider.setBackground(BACKGROUND_COLOR);
         difficultySlider.setForeground(TEXT_COLOR);
         difficultySlider.setFont(new Font("Arial", Font.BOLD, 15));

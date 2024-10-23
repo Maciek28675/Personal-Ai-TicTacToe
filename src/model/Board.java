@@ -4,6 +4,8 @@ public class Board {
 
     private byte size = 3;
     private byte numberToWin = 3;
+    private char currentPlayer = 'x';
+    private char gameState = 'u';
     public static final int CELLSIZE = 200;
 
     char [][] board;
@@ -12,14 +14,49 @@ public class Board {
     // should be marked with different color in case of a win
     private boolean [][] winningCells;
 
-    Board(byte size, byte numberToWin) {
+    public Board(byte size, byte numberToWin) {
         this.size = size;
         this.numberToWin = numberToWin;
 
-        int [][] board = new int[this.size][this.size];
-        boolean [][] winningCells = new boolean[this.size][this.size];
+        this.board = new char[this.size][this.size];
+        this.winningCells = new boolean[this.size][this.size];
+
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                board[i][j] = '0';
+            }
+        }
     }
 
+    public char getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public char getGameState() {
+        return gameState;
+    }
+
+    public boolean getWinningCell(int row, int col) {
+        return winningCells[row][col];
+    }
+
+    public void setCurrentPlayer(char currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public void setGameState(char gameState) {
+        this.gameState = gameState;
+    }
+
+    public void changePlayer(){
+
+        if (currentPlayer == 'x')
+            currentPlayer = 'o';
+
+        else if (currentPlayer == 'o')
+            currentPlayer = 'x';
+
+    }
     public boolean makeMove(int row, int col, char player){
 
         // Place figure only on empty squares
@@ -151,18 +188,18 @@ public class Board {
         resetWinningCells();
 
         // From right to left
-        for (int square = this.size; square > 1; square--) {
+        for (int row = this.size - 1, col = 0; row > 0 && col < this.size - 1; row--, col++) {
 
-            if (board[square][square] == board[square-1][square-1]) {
+            if (board[row][col] == board[row-1][col+1]) {
 
-                if(board[square][square] == 'x')
+                if(board[row][col] == 'x')
                     xScoreCounter++;
 
-                else if (board[square][square] == 'o')
+                else if (board[row][col] == 'o')
                     oScoreCounter++;
 
-                winningCells[square][square] = true;
-                winningCells[square-1][square-1] = true;
+                winningCells[row][col] = true;
+                winningCells[row-1][col+1] = true;
             }
 
             else {

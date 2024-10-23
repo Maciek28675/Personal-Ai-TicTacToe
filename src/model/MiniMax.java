@@ -2,14 +2,13 @@ package model;
 
 public class MiniMax {
 
-    Board board;
-    private int maxDepth = 1;
+    private int maxDepth = 0;
 
-    void setMaxDepth(int maxDepth) {
+    public void setMaxDepth(int maxDepth) {
         this.maxDepth = maxDepth;
     }
 
-    int evaluate() {
+    int evaluate(Board board) {
         char gameState = board.checkGameState();
 
         if (gameState == 'o')
@@ -20,8 +19,8 @@ public class MiniMax {
             return 0;
     }
 
-    int minimax(int depth, int maxDepth, boolean isMaximizing, int alpha, int beta) {
-        int score = evaluate();
+    int minimax(Board board, int depth, int maxDepth, boolean isMaximizing, int alpha, int beta) {
+        int score = evaluate(board);
 
         if(depth >= maxDepth)
             return score;
@@ -43,7 +42,7 @@ public class MiniMax {
             for(int row =0; row< board.getSize(); row++){
                 for(int col = 0; col < board.getSize(); col++){
                     if (board.makeMove(row, col, 'o')){
-                        best = Math.max(best, minimax(depth + 1, this.maxDepth, !isMaximizing, alpha, beta));
+                        best = Math.max(best, minimax(board,depth + 1, this.maxDepth, !isMaximizing, alpha, beta));
                         alpha = Math.max(alpha, best);
 
                         board.board[row][col] = '0';
@@ -61,7 +60,7 @@ public class MiniMax {
             for(int row = 0; row < board.getSize(); row++){
                 for(int col = 0; col < board.getSize(); col++){
                     if (board.makeMove(row, col, 'x')){
-                        best = Math.min(best, minimax(depth + 1, this.maxDepth, !isMaximizing, alpha, beta));
+                        best = Math.min(best, minimax(board,depth + 1, this.maxDepth, !isMaximizing, alpha, beta));
                         beta = Math.min(beta, best);
 
                         board.board[row][col] = '0';
@@ -75,15 +74,18 @@ public class MiniMax {
         return best;
     }
 
-    Pair<Integer, Integer> findBestMove() {
+    public Pair<Integer, Integer> findBestMove(Board board) {
         int bestValue = Integer.MIN_VALUE;
         int moveValue = 0;
         Pair<Integer, Integer> bestMove = new Pair<>(-1, -1);
 
         for(int row = 0; row < board.getSize(); row++){
             for(int col = 0; col < board.getSize(); col++){
+
+                // #TODO: Move this if statement to a helper function to improve readability
                 if (board.makeMove(row, col, 'o')){
-                    moveValue = minimax(0, this.maxDepth, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+                    moveValue = minimax(board,0, this.maxDepth, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
                     board.board[row][col] = '0';
 
                     if (moveValue > bestValue){

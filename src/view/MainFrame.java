@@ -1,6 +1,7 @@
 package view;
 
 import controller.*;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,8 @@ public class MainFrame extends JFrame {
     private BoardPanel boardPanel;
     private MenuController menuController;
     private GameController gameController;
+    private Board board;
+    private MiniMax minimax;
 
     private static final Color BACKGROUND_COLOR = new Color(23, 19,33);
     private static final int WINDOW_WIDTH = 550;
@@ -34,13 +37,17 @@ public class MainFrame extends JFrame {
 
     // This method is used to configure all component properties like fonts, color, etc.
     private void initComponents() {
+        // Models
+        board = new Board((byte) 3, (byte) 3);
+        minimax = new MiniMax();
+
         // Panels
         menuPanel = new MenuPanel();
-        boardPanel = new BoardPanel();
+        boardPanel = new BoardPanel(board);
 
         // Controllers
-        gameController = new GameController(boardPanel);
-        menuController = new MenuController(menuPanel, gameController);
+        gameController = new GameController(boardPanel, board, minimax);
+        menuController = new MenuController(menuPanel, gameController, minimax);
     }
 
     // This method is used to place every gui element in a windows

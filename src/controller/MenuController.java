@@ -1,21 +1,27 @@
 package controller;
 
 import view.MenuPanel;
+import model.*;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 public class MenuController {
 
     private final MenuPanel menuPanel;
     private final GameController gameController;
+    private final MiniMax miniMax;
 
     private final static Color BUTTON_BACKGROUND_COLOR = new Color(238, 79, 79);
 
-    public MenuController(MenuPanel menuPanel, GameController gameController) {
+    public MenuController(MenuPanel menuPanel, GameController gameController, MiniMax miniMax) {
         this.menuPanel = menuPanel;
         this.gameController = gameController;
+        this.miniMax = miniMax;
         initListeners();
     }
 
@@ -42,6 +48,14 @@ public class MenuController {
                    startGame();
 
                 }
+            }
+        });
+
+        menuPanel.getDifficultySlider().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                miniMax.setMaxDepth(menuPanel.getDifficultySlider().getValue());
+                System.out.println("Difficulty: " + menuPanel.getDifficultySlider().getValue());
             }
         });
     }
