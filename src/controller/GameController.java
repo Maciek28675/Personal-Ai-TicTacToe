@@ -68,7 +68,7 @@ public class GameController {
                                 makeBotMove();
                             }
 
-                            if(board.getGameState() != 'u')
+                            if(board.getGameState() == 'x' || board.getGameState() == 'o')
                                 boardPanel.highlightWinningSquare();
 
                         }
