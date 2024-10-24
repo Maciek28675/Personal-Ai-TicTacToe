@@ -52,6 +52,10 @@ public class MenuPanel extends JPanel {
         newGameButton.setBackground(color);
     }
 
+    public void setNewGameButtonBorderColor(Color color) {
+        newGameButton.setBorder(BorderFactory.createLineBorder(color, 3));
+    }
+
     public void setNewGameButtonText(String text) {
         newGameButton.setText(text);
     }
@@ -64,11 +68,27 @@ public class MenuPanel extends JPanel {
         difficultySlider.setEnabled(false);
     }
 
+    public void enableSlider(){
+        difficultySlider.setEnabled(true);
+    }
+
     // =========================================================
     // Constructor related methods
     // =========================================================
 
     private void initComponents(){
+        // Sliders
+        difficultySlider = new JSlider(JSlider.HORIZONTAL, 1, 5 , 1);
+        difficultySlider.setBackground(BACKGROUND_COLOR);
+        difficultySlider.setForeground(TEXT_COLOR);
+        difficultySlider.setFont(new Font("Arial", Font.BOLD, 15));
+        difficultySlider.setPaintTicks(true);
+        difficultySlider.setMajorTickSpacing(1);
+        difficultySlider.setPaintLabels(true);
+        difficultySlider.setPreferredSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
+        difficultySlider.setMaximumSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
+        difficultySlider.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Labels
         welcomeMessage = new JLabel("Welcome to Ai Tic Tac Toe");
         welcomeMessage.setForeground(TEXT_COLOR);
@@ -80,7 +100,7 @@ public class MenuPanel extends JPanel {
         difficultyMessage.setFont(new Font("Arial", Font.BOLD, 20));
         difficultyMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        turnInfo = new JLabel(" ");
+        turnInfo = new JLabel("Chosen difficulty: " + difficultySlider.getValue());
         turnInfo.setForeground(TEXT_COLOR);
         turnInfo.setFont(new Font("Arial", Font.BOLD, 20));
         turnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -95,18 +115,6 @@ public class MenuPanel extends JPanel {
         newGameButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         newGameButton.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // Sliders
-        difficultySlider = new JSlider(JSlider.HORIZONTAL, 1, 5 , 1);
-        difficultySlider.setBackground(BACKGROUND_COLOR);
-        difficultySlider.setForeground(TEXT_COLOR);
-        difficultySlider.setFont(new Font("Arial", Font.BOLD, 15));
-        difficultySlider.setPaintTicks(true);
-        difficultySlider.setMajorTickSpacing(1);
-        difficultySlider.setPaintLabels(true);
-        difficultySlider.setPreferredSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
-        difficultySlider.setMaximumSize(new Dimension(SLIDER_WIDTH, SLIDER_HEIGHT));
-        difficultySlider.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     private void setUpLayout(){

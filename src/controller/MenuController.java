@@ -3,12 +3,8 @@ package controller;
 import view.MenuPanel;
 import model.*;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+import java.util.Objects;
 
 public class MenuController {
 
@@ -16,7 +12,10 @@ public class MenuController {
     private final GameController gameController;
     private final MiniMax miniMax;
 
-    private final static Color BUTTON_BACKGROUND_COLOR = new Color(238, 79, 79);
+    private final static Color RESET_BUTTON_BACKGROUND_COLOR = new Color(238, 79, 79);
+    private final static Color RESET_BUTTON_BORDER_COLOR = new Color(190, 63, 63);
+    private final static Color START_BUTTON_BACKGROUND_COLOR = new Color(68, 147, 65);
+    private final static Color START_BUTTON_BORDER_COLOR = new Color(47, 107, 45);
 
     public MenuController(MenuPanel menuPanel, GameController gameController, MiniMax miniMax) {
         this.menuPanel = menuPanel;
@@ -25,41 +24,43 @@ public class MenuController {
         initListeners();
     }
 
-    private void startGame() {
-        gameController.enableBoard();
-    }
-
     private void initListeners() {
 
-        // #TODO: Consider using card layout for start button
         // #TODO: Delegate creating action listeners to separate classes (or make them inner)
-        // #TODO: Make difficulty slider non changeable after clicking start
-        // #TODO: Add functionality to reset button
+        menuPanel.getNewGameButton().addActionListener(e -> {
 
-        menuPanel.getNewGameButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == menuPanel.getNewGameButton()) {
 
-                if (e.getSource() == menuPanel.getNewGameButton()) {
-
-                   menuPanel.setNewGameButtonColor(BUTTON_BACKGROUND_COLOR);
+               if (Objects.equals(menuPanel.getNewGameButton().getText(), "START")) {
+                   menuPanel.setNewGameButtonColor(RESET_BUTTON_BACKGROUND_COLOR);
+                   menuPanel.setNewGameButtonBorderColor(RESET_BUTTON_BORDER_COLOR);
                    menuPanel.setNewGameButtonText("RESET");
                    menuPanel.setTurnInfoText("Your Turn");
 
-                   startGame();
+                   // Enable player to make a move
+                   gameController.enableBoard();
 
                    menuPanel.disableSlider();
+               }
 
-                }
+               else if (Objects.equals(menuPanel.getNewGameButton().getText(), "RESET")) {
+                   menuPanel.setNewGameButtonColor(START_BUTTON_BACKGROUND_COLOR);
+                   menuPanel.setNewGameButtonBorderColor(START_BUTTON_BORDER_COLOR);
+                   menuPanel.setNewGameButtonText("START");
+                   menuPanel.setTurnInfoText("Chosen difficulty: " + menuPanel.getDifficultySlider().getValue());
+
+                   gameController.resetGame();
+                   gameController.disableBoard();
+
+                   menuPanel.enableSlider();
+               }
+
             }
         });
 
-        menuPanel.getDifficultySlider().addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                miniMax.setMaxDepth(menuPanel.getDifficultySlider().getValue());
-                menuPanel.setTurnInfoText("Chosen Difficulty: " + menuPanel.getDifficultySlider().getValue());
-            }
+        menuPanel.getDifficultySlider().addChangeListener(_ -> {
+            miniMax.setMaxDepth(menuPanel.getDifficultySlider().getValue());
+            menuPanel.setTurnInfoText("Chosen Difficulty: " + menuPanel.getDifficultySlider().getValue());
         });
     }
 

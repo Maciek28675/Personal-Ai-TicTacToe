@@ -72,6 +72,9 @@ public class BoardPanel extends JPanel {
 
     public void updateSquare(int row, int col, char figure) {
         GameBoard[row][col].setText(figure + "");
+        GameBoard[row][col].setBackground(BOARD_COLOR);
+        GameBoard[row][col].setFont(new Font("Arial", Font.PLAIN, 150));
+        GameBoard[row][col].setForeground(Color.WHITE);
     }
 
     public void highlightWinningSquare() {

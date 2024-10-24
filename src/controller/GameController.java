@@ -30,13 +30,33 @@ public class GameController {
         }
     }
 
+    public void disableBoard() {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                boardPanel.getBoardButton(row, col).setEnabled(false);
+            }
+        }
+    }
+
+    public void resetGame() {
+        board.resetBoard();
+        board.resetWinningCells();
+        board.setGameState('u');
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                boardPanel.updateSquare(row, col, ' ');
+            }
+        }
+    }
+
     public void makeBotMove(){
 
-        if (board.getCurrentPlayer() == 'o' && board.getGameState() == 'u'){
-            Pair <Integer, Integer> bestMove;
+        if (board.getCurrentPlayer() == 'o' && board.getGameState() == 'u') {
+            Pair<Integer, Integer> bestMove;
             bestMove = miniMax.findBestMove(board);
 
-            if (board.makeMove(bestMove.getFirst(), bestMove.getSecond(), board.getCurrentPlayer())){
+            if (board.makeMove(bestMove.getFirst(), bestMove.getSecond(), board.getCurrentPlayer())) {
 
                 boardPanel.updateSquare(bestMove.getFirst(), bestMove.getSecond(), 'o');
 
@@ -72,13 +92,21 @@ public class GameController {
                             menuPanel.setTurnInfoText("Your Turn");
                         }
 
-                        if(board.getGameState() == 'x') {
-                            menuPanel.setTurnInfoText("You Win!");
-                            boardPanel.highlightWinningSquare();
-                        }
-                        else if(board.getGameState() == 'o') {
-                            menuPanel.setTurnInfoText("Bot Win's!");
-                            boardPanel.highlightWinningSquare();
+                        switch (board.getGameState()){
+                            case 'x': {
+                                menuPanel.setTurnInfoText("You Win!");
+                                boardPanel.highlightWinningSquare();
+                                break;
+                            }
+                            case 'o': {
+                                menuPanel.setTurnInfoText("Bot Win's!");
+                                boardPanel.highlightWinningSquare();
+                                break;
+                            }
+                            case 'd': {
+                                menuPanel.setTurnInfoText("Draw!");
+                                break;
+                            }
                         }
                     }
                 });
