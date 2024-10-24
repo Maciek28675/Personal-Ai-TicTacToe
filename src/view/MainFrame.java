@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
         boardPanel = new BoardPanel(board);
 
         // Controllers
-        gameController = new GameController(boardPanel, board, minimax);
+        gameController = new GameController(boardPanel, menuPanel, board, minimax);
         menuController = new MenuController(menuPanel, gameController, minimax);
     }
 

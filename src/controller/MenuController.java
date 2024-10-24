@@ -34,7 +34,8 @@ public class MenuController {
         // #TODO: Consider using card layout for start button
         // #TODO: Delegate creating action listeners to separate classes (or make them inner)
         // #TODO: Make difficulty slider non changeable after clicking start
-        
+        // #TODO: Add functionality to reset button
+
         menuPanel.getNewGameButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,9 +44,11 @@ public class MenuController {
 
                    menuPanel.setNewGameButtonColor(BUTTON_BACKGROUND_COLOR);
                    menuPanel.setNewGameButtonText("RESET");
-                   menuPanel.setTurnInfoText("Your Turn!");
+                   menuPanel.setTurnInfoText("Your Turn");
 
                    startGame();
+
+                   menuPanel.disableSlider();
 
                 }
             }
@@ -55,7 +58,7 @@ public class MenuController {
             @Override
             public void stateChanged(ChangeEvent e) {
                 miniMax.setMaxDepth(menuPanel.getDifficultySlider().getValue());
-                System.out.println("Difficulty: " + menuPanel.getDifficultySlider().getValue());
+                menuPanel.setTurnInfoText("Chosen Difficulty: " + menuPanel.getDifficultySlider().getValue());
             }
         });
     }

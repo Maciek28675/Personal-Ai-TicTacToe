@@ -60,6 +60,10 @@ public class MenuPanel extends JPanel {
         turnInfo.setText(text);
     }
 
+    public void disableSlider(){
+        difficultySlider.setEnabled(false);
+    }
+
     // =========================================================
     // Constructor related methods
     // =========================================================
@@ -86,14 +90,14 @@ public class MenuPanel extends JPanel {
         newGameButton.setBackground(BUTTON_BACKGROUND_COLOR);
         newGameButton.setForeground(TEXT_COLOR);
         newGameButton.setFont(new Font("Arial", Font.BOLD, 30));
-        //newGameButton.setBorder(BorderFactory.createLineBorder(BUTTON_BORDER_COLOR, 3));
+        newGameButton.setBorder(BorderFactory.createLineBorder(BUTTON_BORDER_COLOR, 3));
         newGameButton.setFocusable(false);
         newGameButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         newGameButton.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Sliders
-        difficultySlider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
+        difficultySlider = new JSlider(JSlider.HORIZONTAL, 1, 5 , 1);
         difficultySlider.setBackground(BACKGROUND_COLOR);
         difficultySlider.setForeground(TEXT_COLOR);
         difficultySlider.setFont(new Font("Arial", Font.BOLD, 15));
