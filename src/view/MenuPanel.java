@@ -15,10 +15,10 @@ public class MenuPanel extends JPanel {
     private JSlider difficultySlider;
 
     // Color constants
-    private static final Color BACKGROUND_COLOR = new Color(23, 19, 33);
-    private static final Color TEXT_COLOR = new Color(255, 255, 255);
-    private static final Color BUTTON_BACKGROUND_COLOR = new Color(68, 147, 65);
-    private static final Color BUTTON_BORDER_COLOR = new Color(47, 107, 45);
+    private static final Color BACKGROUND_COLOR = new Color(52, 73, 94);
+    private static final Color TEXT_COLOR = new Color(236, 240, 241);
+    private static final Color BUTTON_BACKGROUND_COLOR = new Color(46, 204, 113);
+    private static final Color BUTTON_BORDER_COLOR = new Color(39, 174, 96);
 
     // Dimensions constants
     private static final int BUTTON_WIDTH = 200;

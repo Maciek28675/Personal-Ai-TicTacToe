@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
     private Board board;
     private MiniMax minimax;
 
-    private static final Color BACKGROUND_COLOR = new Color(23, 19,33);
+    private static final Color BACKGROUND_COLOR = new Color(52, 73, 94);
     private static final int WINDOW_WIDTH = 550;
     private static final int WINDOW_HEIGHT = 800;
 

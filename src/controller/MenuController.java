@@ -12,10 +12,10 @@ public class MenuController {
     private final GameController gameController;
     private final MiniMax miniMax;
 
-    private final static Color RESET_BUTTON_BACKGROUND_COLOR = new Color(238, 79, 79);
-    private final static Color RESET_BUTTON_BORDER_COLOR = new Color(190, 63, 63);
-    private final static Color START_BUTTON_BACKGROUND_COLOR = new Color(68, 147, 65);
-    private final static Color START_BUTTON_BORDER_COLOR = new Color(47, 107, 45);
+    private final static Color RESET_BUTTON_BACKGROUND_COLOR = new Color(231, 76, 60);
+    private final static Color RESET_BUTTON_BORDER_COLOR = new Color(192, 57, 43);
+    private final static Color START_BUTTON_BACKGROUND_COLOR = new Color(46, 204, 113);
+    private final static Color START_BUTTON_BORDER_COLOR = new Color(39, 174, 96);
 
     public MenuController(MenuPanel menuPanel, GameController gameController, MiniMax miniMax) {
         this.menuPanel = menuPanel;
